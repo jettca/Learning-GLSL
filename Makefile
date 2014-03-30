@@ -114,54 +114,6 @@ pa3/fast:
 	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/build
 .PHONY : pa3/fast
 
-src/GLSLProgram.o: src/GLSLProgram.cpp.o
-.PHONY : src/GLSLProgram.o
-
-# target to build an object file
-src/GLSLProgram.cpp.o:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/GLSLProgram.cpp.o
-.PHONY : src/GLSLProgram.cpp.o
-
-src/GLSLProgram.i: src/GLSLProgram.cpp.i
-.PHONY : src/GLSLProgram.i
-
-# target to preprocess a source file
-src/GLSLProgram.cpp.i:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/GLSLProgram.cpp.i
-.PHONY : src/GLSLProgram.cpp.i
-
-src/GLSLProgram.s: src/GLSLProgram.cpp.s
-.PHONY : src/GLSLProgram.s
-
-# target to generate assembly for a file
-src/GLSLProgram.cpp.s:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/GLSLProgram.cpp.s
-.PHONY : src/GLSLProgram.cpp.s
-
-src/GLScreenCapturer.o: src/GLScreenCapturer.cpp.o
-.PHONY : src/GLScreenCapturer.o
-
-# target to build an object file
-src/GLScreenCapturer.cpp.o:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/GLScreenCapturer.cpp.o
-.PHONY : src/GLScreenCapturer.cpp.o
-
-src/GLScreenCapturer.i: src/GLScreenCapturer.cpp.i
-.PHONY : src/GLScreenCapturer.i
-
-# target to preprocess a source file
-src/GLScreenCapturer.cpp.i:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/GLScreenCapturer.cpp.i
-.PHONY : src/GLScreenCapturer.cpp.i
-
-src/GLScreenCapturer.s: src/GLScreenCapturer.cpp.s
-.PHONY : src/GLScreenCapturer.s
-
-# target to generate assembly for a file
-src/GLScreenCapturer.cpp.s:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/GLScreenCapturer.cpp.s
-.PHONY : src/GLScreenCapturer.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -186,30 +138,6 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/trackball.o: src/trackball.cpp.o
-.PHONY : src/trackball.o
-
-# target to build an object file
-src/trackball.cpp.o:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/trackball.cpp.o
-.PHONY : src/trackball.cpp.o
-
-src/trackball.i: src/trackball.cpp.i
-.PHONY : src/trackball.i
-
-# target to preprocess a source file
-src/trackball.cpp.i:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/trackball.cpp.i
-.PHONY : src/trackball.cpp.i
-
-src/trackball.s: src/trackball.cpp.s
-.PHONY : src/trackball.s
-
-# target to generate assembly for a file
-src/trackball.cpp.s:
-	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/trackball.cpp.s
-.PHONY : src/trackball.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,18 +147,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... pa3"
 	@echo "... rebuild_cache"
-	@echo "... src/GLSLProgram.o"
-	@echo "... src/GLSLProgram.i"
-	@echo "... src/GLSLProgram.s"
-	@echo "... src/GLScreenCapturer.o"
-	@echo "... src/GLScreenCapturer.i"
-	@echo "... src/GLScreenCapturer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/trackball.o"
-	@echo "... src/trackball.i"
-	@echo "... src/trackball.s"
 .PHONY : help
 
 
