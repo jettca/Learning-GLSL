@@ -162,6 +162,30 @@ src/mesh.cpp.s:
 	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/mesh.cpp.s
 .PHONY : src/mesh.cpp.s
 
+src/shaders.o: src/shaders.cpp.o
+.PHONY : src/shaders.o
+
+# target to build an object file
+src/shaders.cpp.o:
+	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/shaders.cpp.o
+.PHONY : src/shaders.cpp.o
+
+src/shaders.i: src/shaders.cpp.i
+.PHONY : src/shaders.i
+
+# target to preprocess a source file
+src/shaders.cpp.i:
+	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/shaders.cpp.i
+.PHONY : src/shaders.cpp.i
+
+src/shaders.s: src/shaders.cpp.s
+.PHONY : src/shaders.s
+
+# target to generate assembly for a file
+src/shaders.cpp.s:
+	$(MAKE) -f CMakeFiles/pa3.dir/build.make CMakeFiles/pa3.dir/src/shaders.cpp.s
+.PHONY : src/shaders.cpp.s
+
 src/stb_image.o: src/stb_image.cpp.o
 .PHONY : src/stb_image.o
 
@@ -201,6 +225,9 @@ help:
 	@echo "... src/mesh.o"
 	@echo "... src/mesh.i"
 	@echo "... src/mesh.s"
+	@echo "... src/shaders.o"
+	@echo "... src/shaders.i"
+	@echo "... src/shaders.s"
 	@echo "... src/stb_image.o"
 	@echo "... src/stb_image.i"
 	@echo "... src/stb_image.s"

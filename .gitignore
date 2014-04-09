@@ -1,5 +1,7 @@
 .DS_Store
-Cmake*
-cmake*
+CMakeCache.txt
+CMakeFiles/*
+cmake/*
+cmake_*
 pa3
 *.swp

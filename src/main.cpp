@@ -1,7 +1,5 @@
 #include <stdlib.h>
 #include <iostream>
-#include <fstream>
-#include <sstream>
 
 #include <GL/glew.h>
 #if defined(_WIN32)
@@ -14,8 +12,8 @@
 #   include <GL/glut.h>
 #endif
 
+#include "shaders.h"
 #include "mesh.h"
-#include "stb_image.h"
 
 using namespace std;
 
@@ -27,7 +25,8 @@ GLfloat camPosX, camPosY, camPosZ, camRotY;
 GLfloat position[] = {3.0, 2.0, 2.0, 0.0};
 
 // Shaders and textures
-GLuint program;
+int shaderMode;
+int program;
 GLuint textureID;
 
 // Mesh data
@@ -60,18 +59,17 @@ void setupRC()
 
 void loadThing(string filepath)
 {
-    /* load texture */
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-
-    int width, height, components;
-    unsigned char *data = stbi_load("static/uv_color_map.png",
-            &width, &height, &components, 0);
-    cout << width << " " << height << endl;
-
-    glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
-    
-    stbi_image_free(data);
+    /* load shader */
+    if(shaderMode == 1)
+    {
+        program = setupPhongShader();
+    }
+    else
+    {
+        program = setupTextureShader(textureID);
+    }
+    if(program < 0)
+        exit(1);
 
     /* load mesh */
     thing = mesh(filepath);
@@ -173,83 +171,23 @@ void update()
     glutPostRedisplay();
 }
 
-static void setupShaders()
-{
-    glewInit();
-    if(!glewIsSupported("GL_VERSION_2_0 GL_ARB_multitexture GL_EXT_framebuffer_object")) 
-    {
-        fprintf(stderr, "Required OpenGL extensions missing\n");
-        exit(2);
-    }
-
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-    /* read in shader files */
-    ifstream v("src/phong.vert");
-    ifstream f("src/phong.frag");
-
-    ostringstream vbuffer, fbuffer;
-    vbuffer << v.rdbuf();
-    fbuffer << f.rdbuf();
-
-    string s_phongVS(vbuffer.str());
-    string s_phongFS(fbuffer.str());
-
-    char *phongVS, *phongFS;
-    phongVS = new char[s_phongVS.length() + 1];
-    phongFS = new char[s_phongFS.length() + 1];
-    strcpy(phongVS, s_phongVS.c_str());
-    strcpy(phongFS, s_phongFS.c_str());
-
-    glShaderSource(vertexShader, 1, (const char**)&phongVS, 0);
-    glShaderSource(fragmentShader, 1, (const char**)&phongFS, 0);
-    glCompileShader(vertexShader);
-    glCompileShader(fragmentShader);
-
-    GLint vstatus, fstatus;
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &vstatus);
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &fstatus);
-    if(vstatus != GL_TRUE || fstatus != GL_TRUE)
-    {
-        char log[2048];
-        int len;
-        glGetShaderInfoLog(vertexShader, 2048, (GLsizei*)&len, log);
-        fprintf(stderr, "%s", log);
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
-        exit(1);
-    }
-
-    program = glCreateProgram();
-    glAttachShader(program, vertexShader);
-    glAttachShader(program, fragmentShader);
-    glLinkProgram(program);
-
-    GLint pstatus;
-    glGetProgramiv(program, GL_LINK_STATUS, &pstatus);
-    if(pstatus != GL_TRUE)
-    {
-        char log[2048];
-        int len;
-        glGetProgramInfoLog(program, 2048, (GLsizei*)&len, log);
-        fprintf(stderr, "%s", log);
-        glDeleteProgram(program);
-        exit(1);
-    }
-}
-
 int main(int argc, char **argv)
 {
     int win_width = 1024;
     int win_height = 512;
+
+    if(argc != 2)
+    {
+        cout << "Incorrect usage\n";
+        exit(1);
+    }
+    shaderMode = atoi(argv[1]);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(win_width, win_height);
 
     glutCreateWindow("wow");
-    setupShaders();
     setupRC();
     loadThing("static/test_mesh.obj");
 
