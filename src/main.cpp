@@ -15,6 +15,7 @@
 #endif
 
 #include "mesh.h"
+#include "stb_image.h"
 
 using namespace std;
 
@@ -25,8 +26,9 @@ GLfloat camPosX, camPosY, camPosZ, camRotY;
 // Lights & Materials
 GLfloat position[] = {3.0, 2.0, 2.0, 0.0};
 
-// Shaders
+// Shaders and textures
 GLuint program;
+GLuint textureID;
 
 // Mesh data
 mesh thing;
@@ -58,6 +60,20 @@ void setupRC()
 
 void loadThing(string filepath)
 {
+    /* load texture */
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+
+    int width, height, components;
+    unsigned char *data = stbi_load("static/uv_color_map.png",
+            &width, &height, &components, 0);
+    cout << width << " " << height << endl;
+
+    glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+    
+    stbi_image_free(data);
+
+    /* load mesh */
     thing = mesh(filepath);
 }
 
