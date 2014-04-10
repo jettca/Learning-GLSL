@@ -1,6 +1,5 @@
 varying vec3 lightDir;
 varying vec3 normal;
-varying vec4 color;
 varying vec3 halfViewDir;
 void main()
 {
@@ -9,6 +8,5 @@ void main()
     normal = normalize(gl_NormalMatrix*gl_Normal);
     halfViewDir = normalize(lightDir + viewDir);
 
-    color = gl_Color;
     gl_Position = ftransform();
 }

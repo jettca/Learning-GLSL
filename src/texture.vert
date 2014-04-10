@@ -1,6 +1,5 @@
 varying vec3 lightDir;
 varying vec3 normal;
-varying vec4 color;
 varying vec3 halfViewDir;
 varying vec2 vertexUV;
 varying vec2 UV;
