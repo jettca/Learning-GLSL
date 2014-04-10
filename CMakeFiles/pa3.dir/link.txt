@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG -arch x86_64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/pa3.dir/src/main.cpp.o CMakeFiles/pa3.dir/src/mesh.cpp.o CMakeFiles/pa3.dir/src/shaders.cpp.o CMakeFiles/pa3.dir/src/stb_image.cpp.o  -o pa3  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL /usr/lib/libGLEW.dylib 
