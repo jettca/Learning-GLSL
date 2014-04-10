@@ -12,6 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string.h>
 
 #include "shaders.h"
 #include "stb_image.h"
@@ -24,8 +25,8 @@ glm::ivec2 loadShaders(std::string vertFile, std::string fragFile)
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
     /* read shader files into strings */
-    std::ifstream vfile(vertFile);
-    std::ifstream ffile(fragFile);
+    std::ifstream vfile(vertFile.c_str());
+    std::ifstream ffile(fragFile.c_str());
 
     std::ostringstream vbuffer, fbuffer;
     vbuffer << vfile.rdbuf();

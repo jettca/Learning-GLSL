@@ -28,7 +28,7 @@ mesh::mesh(std::string filepath) :
     std::ostringstream mtlpath;
     mtlpath << "static/";
 
-    std::ifstream objfile(filepath);
+    std::ifstream objfile(filepath.c_str());
     std::string line;
     while(getline(objfile, line))
     {
@@ -79,7 +79,7 @@ mesh::mesh(std::string filepath) :
 
 void mesh::loadMTL(std::string mtlpath)
 {
-    std::ifstream mtlfile(mtlpath);
+    std::ifstream mtlfile(mtlpath.c_str());
     std::string line;
     while(getline(mtlfile, line))
     {

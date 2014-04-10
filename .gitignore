@@ -2,3 +2,4 @@
 pa3
 *.swp
 CMakeCache.txt
+CMakeFiles/*
