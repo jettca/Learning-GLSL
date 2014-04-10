@@ -1,3 +1,6 @@
+#ifndef __MESH_H__
+#define __MESH_H__
+
 #include <string>
 #include <vector>
 #include "glm/glm.hpp"
@@ -8,6 +11,8 @@ class mesh
         mesh();
         mesh(std::string filepath);
         void render();
+
+        std::vector<glm::vec2> getTextureUVs() const;
 
     private:
         /* faces is one row per vertex, one column per data point
@@ -21,5 +26,7 @@ class mesh
 
         glm::vec3 diffuse, ambient;
 
-        void loadMtl(std::string mtlpath);
+        void loadMTL(std::string mtlpath);
 };
+
+#endif  // ifndef __MESH_H__

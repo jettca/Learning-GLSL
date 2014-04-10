@@ -74,10 +74,10 @@ mesh::mesh(std::string filepath) :
         }
     }
 
-    loadMtl(mtlpath.str());
+    loadMTL(mtlpath.str());
 }
 
-void mesh::loadMtl(std::string mtlpath)
+void mesh::loadMTL(std::string mtlpath)
 {
     std::ifstream mtlfile(mtlpath);
     std::string line;
@@ -102,9 +102,11 @@ void mesh::render()
 {
     GLfloat mat_diffuse[4] = {diffuse.x, diffuse.y, diffuse.z, 1.0f};
     GLfloat mat_ambient[4] = {ambient.x, ambient.y, ambient.z, 1.0f};
+    GLfloat mat_specular[4] = {diffuse.x, diffuse.y, diffuse.z, 1.0f};
 
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
     glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 
     glBegin(GL_TRIANGLES);
     unsigned int numfaces = faces.size();
@@ -122,4 +124,9 @@ void mesh::render()
         }
     }
     glEnd();
+}
+
+std::vector<glm::vec2> mesh::getTextureUVs() const
+{
+    return uv_textures;
 }

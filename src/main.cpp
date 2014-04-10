@@ -22,7 +22,7 @@ using namespace std;
 GLfloat camPosX, camPosY, camPosZ, camRotY;
 
 // Lights & Materials
-GLfloat position[] = {3.0, 2.0, 2.0, 0.0};
+GLfloat position[] = {2.5, 1.0, 2.0, 0.0};
 
 // Shaders and textures
 int shaderMode;
@@ -47,7 +47,7 @@ void setupRC()
 {
     camPosX = 0.0f;
     camPosY = 0.0f;
-    camPosZ = -10.5f;
+    camPosZ = -15.0f;
     camRotY = 0.0f;
     
     glEnable(GL_DEPTH_TEST);
@@ -59,20 +59,24 @@ void setupRC()
 
 void loadThing(string filepath)
 {
+    /* load mesh */
+    thing = mesh(filepath);
+
     /* load shader */
     if(shaderMode == 1)
     {
-        program = setupPhongShader();
+        program = setupBasicShader("src/phong.vert", "src/phong.frag");
+    }
+    else if(shaderMode == 2)
+    {
+        program = setupBasicShader("src/bp.vert", "src/bp.frag");
     }
     else
     {
-        program = setupTextureShader(textureID);
+        program = setupTextureShader(textureID, thing);
     }
     if(program < 0)
         exit(1);
-
-    /* load mesh */
-    thing = mesh(filepath);
 }
 
 void renderThing()
@@ -178,7 +182,7 @@ int main(int argc, char **argv)
 
     if(argc != 2)
     {
-        cout << "Incorrect usage\n";
+        cout << "One argument required\n";
         exit(1);
     }
     shaderMode = atoi(argv[1]);
@@ -188,6 +192,7 @@ int main(int argc, char **argv)
     glutInitWindowSize(win_width, win_height);
 
     glutCreateWindow("wow");
+
     setupRC();
     loadThing("static/test_mesh.obj");
 
